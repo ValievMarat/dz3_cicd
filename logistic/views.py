@@ -1,6 +1,7 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from logistic.models import Product, Stock
@@ -15,6 +16,9 @@ class ProductViewSet(ModelViewSet):
     pagination_class = PageNumberPagination
     pagination_class.page_size = 5
 
+    @action(['GET']), detail=False)
+    def test(self, request):
+        return Response('Hello test!')
 
 class StockViewSet(ModelViewSet):
     queryset = Stock.objects.all()
