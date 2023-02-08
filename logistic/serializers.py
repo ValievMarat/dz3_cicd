@@ -30,7 +30,7 @@ class StockSerializer(serializers.ModelSerializer):
         stock = super().create(validated_data)
 
         for position in positions:
-            product_pos = StockProduct.objects.create(stock=stock, **position)
+            StockProduct.objects.create(stock=stock, **position)
 
         return stock
 
